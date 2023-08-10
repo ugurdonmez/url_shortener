@@ -92,19 +92,6 @@ http://localhost:3000/
 
 ## 🚀 Running the Project
 
-### With Docker Compose
-
-To spin up the entire service:
-
-1. Navigate to the project's root directory.
-2. Run:
-
-```shell
-$ docker-compose up --build
-```
-This command will start both the backend and frontend, providing an integrated development environment.
-
-
 ### Without Docker Compose
 
 #### Backend
@@ -112,11 +99,11 @@ This command will start both the backend and frontend, providing an integrated d
 1. Navigate to the `backend` directory.
 2. Run:
 ```shell
-$ mvn clean install
+ mvn clean install
 ```
 3. After a successful build, start the application:
 ```shell
-$ mvn spring-boot:run
+ mvn spring-boot:run
 ```
 
 The backend server will start, and it should be accessible at `http://localhost:8080/`.
@@ -126,22 +113,35 @@ The backend server will start, and it should be accessible at `http://localhost:
 1. Navigate to the `frontend` directory.
 2. Install the required npm packages:
 ```shell
-$ npm install
+ npm install
 ```
 or
 ```shell
-$ yarn install
+ yarn install
 ```
 3. Start the React application:
 ```shell
-$ npm start
+ npm start
 ```
 or
 ```shell
-$ yarn start
+ yarn start
 ```
 The React frontend will then be accessible at 
 `http://localhost:3000/`.
+
+### With Docker Compose
+
+To spin up the entire service:
+
+1. Navigate to the project's root directory.
+2. Run:
+
+```shell
+ docker-compose up --build
+```
+This command will start both the backend and frontend, providing an integrated development environment.
+
 
 ## 🧪 Running Unit Tests
 
@@ -151,7 +151,7 @@ The React frontend will then be accessible at
 2. Run the unit tests with Maven:
 
 ```shell
-$ mvn test
+ mvn test
 ```
 This will execute all unit tests in your backend service. Maven will provide a summary of the test results in the console.
 
@@ -159,17 +159,17 @@ This will execute all unit tests in your backend service. Maven will provide a s
 1. Navigate to the `frontend` directory.
 2. Install the required npm packages (if you haven't already):
 ```shell
-$ npm install
+ npm install
 ```
 or
 ```shell
-$ yarn install
+ yarn install
 ```
 3. Run the React application tests:
 ```shell
-$ npm test
+ npm test
 ```
 or
 ```shell
-$ yarn test
+ yarn test
 ```
