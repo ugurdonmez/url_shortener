@@ -58,7 +58,7 @@ public class UrlController {
                     .creationDate(persistedUrl.get().getCreationDate())
                     .build();
 
-            logger.info("URL shortened: {} {}", urlRequest.getOriginalUrl(), url.get().getShortUrl());
+            logger.info("URL shortened: {} {}", responseDTO.getOriginalUrl(), responseDTO.getShortUrl());
 
             return ResponseEntity.ok(responseDTO);
         }
