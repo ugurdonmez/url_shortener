@@ -2,6 +2,9 @@
 
 This project is a URL shortening service, akin to services like Bit.ly or TinyURL. Users input a lengthy URL, and they're presented with a condensed version which, when visited, redirects them to the initial URL.
 
+![URL Shortener Screenshot](/images/url_shortener.png)
+
+
 ## 🛠 Development Stack
 
 ### Backend
