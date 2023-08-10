@@ -92,11 +92,15 @@ http://localhost:3000/
 
 ## 🚀 Running the Project
 
-### Without Docker Compose
+📝 Note: These instructions are for those who prefer not to use Docker Compose or wish to run the application directly on their machine.
+
 
 #### Backend
 
 1. Navigate to the `backend` directory.
+```shell
+ cd backend
+```
 2. Run:
 ```shell
  mvn clean install
@@ -111,6 +115,9 @@ The backend server will start, and it should be accessible at `http://localhost:
 #### Frontend
 
 1. Navigate to the `frontend` directory.
+```shell
+ cd frontend
+```
 2. Install the required npm packages:
 ```shell
  npm install
@@ -131,8 +138,12 @@ The React frontend will then be accessible at
 `http://localhost:3000/`.
 
 ### With Docker Compose
+#### ⚠️ Important Note Before Using Docker-Compose:
+If you decide to run the application using Docker Compose, please ensure that the ports specified in the `docker-compose.yml` file are not already in use on your machine. Especially check ports `3000` and `8080`. Conflicts can cause the containers to not start properly. If you've other services running on these ports, consider stopping them or updating the `docker-compose.yml` file to use different ports.
 
-To spin up the entire service:
+
+
+#### To spin up the entire service:
 
 1. Navigate to the project's root directory.
 2. Run:
