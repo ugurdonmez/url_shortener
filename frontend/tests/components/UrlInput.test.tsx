@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
-import UrlInput from './UrlInput';
+import UrlInput from '../../src/components/UrlInput';
 
 describe('<UrlInput />', () => {
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { TextField, Box, Button, Grid, Typography } from '@mui/material';
 
-const isValidURL = (str) => {
+const isValidURL = (str: string): boolean => {
     try {
         new URL(str);
         return true;
@@ -10,12 +10,17 @@ const isValidURL = (str) => {
     }
 };
 
+interface UrlInputProps {
+    value: string;
+    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    handleSubmit: () => void;
+}
 
-const UrlInput = ({ value, onChange, handleSubmit }) => {
+const UrlInput: React.FC<UrlInputProps> = ({ value, onChange, handleSubmit }) => {
 
-    const [error, setError] = useState(null);
+    const [error, setError] = useState<string | null>(null);
 
-    const handleValidationAndSubmit = () => {
+    const handleValidationAndSubmit = (): void => {
         if (!isValidURL(value)) {
             setError("Please enter a valid URL.");
             return;

@@ -1,7 +1,7 @@
 import React from 'react';
 import { AppBar, Toolbar, Typography, Box } from '@mui/material';
 
-const Header = () => {
+const Header: React.FC = () => {
     return (
         <Box mt={10} mb={10}> {/* Add spacing to top and bottom */}
             <AppBar position="static" color="transparent" elevation={0}>
@@ -24,4 +24,3 @@ const Header = () => {
 };
 
 export default Header;
-

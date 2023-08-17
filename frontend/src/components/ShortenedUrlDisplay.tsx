@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Button, Grid, TextField, Typography } from '@mui/material';
 
-const copyToClipboard = (text) => {
+const copyToClipboard = (text: string) => {
     navigator.clipboard.writeText(text)
         .then(() => {
             console.log('Text copied to clipboard');
@@ -9,9 +9,13 @@ const copyToClipboard = (text) => {
         .catch(err => {
             console.error('Could not copy text: ', err);
         });
+};
+
+interface ShortenedUrlDisplayProps {
+    shortUrl: string;
 }
 
-const ShortenedUrlDisplay = ({ shortUrl }) => {
+const ShortenedUrlDisplay: React.FC<ShortenedUrlDisplayProps> = ({ shortUrl }) => {
 
     const fullShortUrl = `${window.location.protocol}//${window.location.hostname}${window.location.port ? ':' + window.location.port : ''}/${shortUrl}`;
 
@@ -24,11 +28,11 @@ const ShortenedUrlDisplay = ({ shortUrl }) => {
         <Box p={4}
              m={4}
              sx={{
-            width: 758,
-            height: 200,
-            backgroundColor: '#fff',
-            boxShadow: '0 1px 4px #ccc',
-        }}>
+                 width: 758,
+                 height: 200,
+                 backgroundColor: '#fff',
+                 boxShadow: '0 1px 4px #ccc',
+             }}>
 
             <Grid container>
                 <Grid item xs={12}>
