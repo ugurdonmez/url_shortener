@@ -12,11 +12,8 @@ describe('App component', () => {
     it('renders without crashing', () => {
         render(
             <Provider store={store}>
-                <Router>
-                    <App />
-                </Router>
+                <App />
             </Provider>
         );
     });
-
 });

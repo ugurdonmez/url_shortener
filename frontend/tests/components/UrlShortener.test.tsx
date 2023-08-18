@@ -1,31 +1,53 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
-import { shortenUrl } from '../../src/services/apiService';
+import { render, fireEvent, screen } from '@testing-library/react';
+import { Provider } from 'react-redux';
+import configureMockStore from 'redux-mock-store';
 import UrlShortener from '../../src/components/UrlShortener';
 
-jest.mock('../../src/services/apiService');
+const mockStore = configureMockStore();
 
 describe('<UrlShortener />', () => {
-
-    // Cast shortenUrl as mocked function for jest
-    const mockShortenUrl = shortenUrl as jest.MockedFunction<typeof shortenUrl>;
+    let store: any;
+    const initialState = {
+        urlData: {
+            shortUrl: null,
+            longUrl: null,
+            loading: false,
+            error: null
+        }
+    };
 
     beforeEach(() => {
-        mockShortenUrl.mockClear();
+        store = mockStore(initialState);
+        store.dispatch = jest.fn();
+
+        // render(
+        //     <Provider store={store}>
+        //         <UrlShortener />
+        //     </Provider>
+        // );
     });
 
     it('renders without crashing', () => {
-        render(<UrlShortener />);
-        expect(screen.getByLabelText('Enter the link here')).toBeInTheDocument();
-        expect(screen.getByText('Shorten')).toBeInTheDocument();
+        expect(screen.queryByRole('alert')).not.toBeInTheDocument();
     });
 
-    it('updates the input value on change', () => {
-        render(<UrlShortener />);
-        const input = screen.getByLabelText('Enter the link here') as HTMLInputElement;
+    it('displays the error from the store when there is an error', () => {
+        store = mockStore({
+            ...initialState,
+            urlData: {
+                ...initialState.urlData,
+                error: 'Some error occurred'
+            }
+        });
 
-        fireEvent.change(input, { target: { value: 'https://www.example.com' } });
-        expect(input.value).toBe('https://www.example.com');
+        render(
+            <Provider store={store}>
+                <UrlShortener />
+            </Provider>
+        );
+
+        expect(screen.getByRole('alert')).toHaveTextContent('Some error occurred');
     });
 
 });

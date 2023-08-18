@@ -23,6 +23,10 @@ This project is a URL shortening service, akin to services like Bit.ly or TinyUR
 
 - **Axios**: A promise-based HTTP client. Used to make asynchronous HTTP requests to our backend.
 
+- **TypeScript**: A strict syntactical superset of JavaScript, it adds optional static typing. It enhances code quality and understandability, making it easier to maintain and scale applications. In this project, TypeScript is used to ensure more predictable behavior and to define prop types for React components and return types
+
+- **Redux**: A predictable state container for JavaScript apps. It helps in managing the global state of the application, making the state predictable and easier to debug. In our project, it's employed to store the shortened URL data and manage the various states (loading, error, success) associated with the URL shortening process.
+
 ## ✨ Key Features
 
 1. **URL Shortening**: Submit a long URL and receive its shortened version.

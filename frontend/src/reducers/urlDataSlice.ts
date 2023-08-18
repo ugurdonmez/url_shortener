@@ -51,8 +51,6 @@ const urlDataSlice = createSlice({
                 }
             })
 
-
-
             // Handling fetchLongUrl actions
             .addCase(fetchLongUrl.pending, (state) => {
                 state.loading = true;

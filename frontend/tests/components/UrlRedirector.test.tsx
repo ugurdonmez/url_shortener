@@ -1,44 +1,42 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
-import UrlInput from '../../src/components/UrlInput';
+import { render } from '@testing-library/react';
+import { Provider } from 'react-redux';
+import configureMockStore from 'redux-mock-store';
+import UrlRedirector from '../../src/components/UrlRedirector';
+import {MemoryRouter, Route, Routes} from 'react-router-dom';
 
-describe('<UrlInput />', () => {
+const mockStore = configureMockStore();
 
-    it('displays the provided value in the text input', () => {
-        const mockValue = 'https://www.example.com';
-        render(<UrlInput value={mockValue} onChange={jest.fn()} handleSubmit={jest.fn()} />);
+describe('UrlRedirector component', () => {
+    let store: any;
+    const initialState = {
+        urlData: {
+            shortUrl: null,
+            longUrl: null,
+            loading: false,
+            error: null
+        }
+    };
 
-        const input = screen.getByDisplayValue(mockValue);
-        expect(input).toBeInTheDocument();
+    beforeEach(() => {
+        store = mockStore(initialState);
+        store.dispatch = jest.fn();
+
     });
 
-    it('calls the provided onChange handler when the text input value changes', () => {
-        const mockOnChange = jest.fn();
-        render(<UrlInput value='' onChange={mockOnChange} handleSubmit={jest.fn()} />);
+    it('dispatches fetchLongUrl action when component is mounted', () => {
+        const testShortUrl = 'someShortUrl';
 
-        const input = screen.getByLabelText('Enter the link here');
-        fireEvent.change(input, { target: { value: 'https://www.changed.com' } });
+        render(
+            <Provider store={store}>
+                <MemoryRouter initialEntries={[`/r/${testShortUrl}`]}>
+                    <Routes>
+                        <Route path="/r/:shortUrl" element={<UrlRedirector />} />
+                    </Routes>
+                </MemoryRouter>
+            </Provider>
+        );
 
-        expect(mockOnChange).toHaveBeenCalled();
-    });
-
-    it('calls the provided handleSubmit handler when the "Shorten" button is clicked', () => {
-        const mockHandleSubmit = jest.fn();
-        render(<UrlInput value='' onChange={jest.fn()} handleSubmit={mockHandleSubmit} />);
-
-        const button = screen.getByText('Shorten');
-        fireEvent.click(button);
-
-        expect(mockHandleSubmit).toHaveBeenCalled();
-    });
-
-    it('displays the instructional texts', () => {
-        render(<UrlInput value='' onChange={jest.fn()} handleSubmit={jest.fn()} />);
-
-        const description1 = screen.getByText('ShortURL is a free tool to shorten URLs and generate short links');
-        const description2 = screen.getByText('URL shortener allows to create a shortened link making it easy to share');
-
-        expect(description1).toBeInTheDocument();
-        expect(description2).toBeInTheDocument();
+        expect(store.dispatch).toHaveBeenCalledTimes(1);
     });
 });
