@@ -46,6 +46,10 @@ When deploying to a production environment, consider using a persistent database
 
 ## 🚀 Improvements
 
+### **Responsive Design**
+
+- **Why?** With an increasing number of users accessing websites and web apps from mobile devices, ensuring a seamless user experience across various device sizes is paramount. A responsive design adapts the application's user interface to the screen size, whether it's a desktop monitor or a mobile phone, guaranteeing an optimal user experience.
+
 ### **Click Count**
 
 - **Why?** Tracking the number of clicks a shortened URL receives can provide insights into its popularity and usage. This metric is essential for analytics and can help understand the effectiveness of content or campaigns.
